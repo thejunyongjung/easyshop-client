@@ -99,6 +99,7 @@ main > .content-form .cart-item
     border: solid 1px #ccc;
 }
 
+/*
 .content-form .cart-header
 {
     display: flex;
@@ -110,6 +111,19 @@ main > .content-form .cart-item
 {
     margin: 10px 0;
     color: maroon;
+}
+*/
+
+.content-form .cart-header
+{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.content-form .cart-header button:first-of-type
+{
+    margin-left: auto;
 }
 
 .product
