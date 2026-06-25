@@ -95,6 +95,13 @@ class ShoppingCartService {
         button.addEventListener("click", () => this.clearCart());
         cartHeader.appendChild(button)
 
+        const checkoutButton = document.createElement("button");
+        checkoutButton.classList.add("btn");
+        checkoutButton.classList.add("btn-success");   // ← green = "complete the order"
+        checkoutButton.innerText = "Checkout";
+        checkoutButton.addEventListener("click", () => this.checkout());
+        cartHeader.appendChild(checkoutButton);
+
         contentDiv.appendChild(cartHeader)
         main.appendChild(contentDiv);
 
@@ -171,6 +178,22 @@ class ShoppingCartService {
 
                  templateBuilder.append("error", data, "errors")
              })
+    }
+
+    checkout()
+    {
+        const url = `${config.baseUrl}/orders`
+
+        axios.post(url, {})
+            .then(response => {
+                this.cart = {items: [], total: 0 }; // order placed -> cart is now empty
+                this.updateCartDisplay();
+                this.loadCartPage();
+            })
+            .catch(error => {
+                const data = {error: "Checkout failed."};
+                templateBuilder.append("error", data, "errors");
+            })
     }
 
     updateCartDisplay()
