@@ -176,7 +176,8 @@ class ShoppingCartService {
     updateCartDisplay()
     {
         try {
-            const itemCount = this.cart.items.length;
+            // const itemCount = this.cart.items.length;
+            const itemCount = this.cart.items.reduce((sum, item) => sum + item.quantity, 0);
             const cartControl = document.getElementById("cart-items")
 
             cartControl.innerText = itemCount;
